@@ -22,6 +22,8 @@ This is an experimental Android app for exploring `ROLE_ASSISTANT`, assist data,
 
 Selecting Popit! as the default assistant replaces the assistant currently configured on the device.
 
+The launcher icon can be hidden from the setup screen. To reopen Popit! while it is hidden, enter `*#*#76748#*#*` in the system dialer.
+
 ## Usage
 
 1. Open the app or activity you want to capture.
@@ -39,6 +41,7 @@ Opening the same application again replaces its existing Popit! bubble. Differen
 - Applications may omit, restrict, or customize assist data.
 - The captured `Intent` reopens an activity; it does not transfer the original task or back stack into the bubble.
 - Bubble auto-expansion is ultimately controlled by System UI and may be ignored.
+- The hidden-icon dialer entry requires a telephony-capable device and a dialer that forwards Android secret codes.
 - Behavior can vary between Android builds and device manufacturers.
 
 ## Build

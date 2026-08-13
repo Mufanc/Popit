@@ -12,10 +12,12 @@ import android.graphics.drawable.Icon
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Button
+import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : Activity() {
+    private val launcher by lazy { ComponentName(this, "$packageName.Launcher") }
     private lateinit var roleManager: RoleManager
     private lateinit var notifications: NotificationManager
     private lateinit var assistantStatus: TextView
@@ -46,6 +48,11 @@ class MainActivity : Activity() {
         }
         setupStatus = findViewById(R.id.setup_status)
         findViewById<Button>(R.id.tile_action).setOnClickListener { requestTile() }
+        findViewById<Switch>(R.id.hide_icon).apply {
+            isChecked = !launcherIconVisible()
+            isEnabled = packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY_CALLING)
+            setOnCheckedChangeListener { _, hidden -> setLauncherIconVisible(!hidden) }
+        }
     }
 
     override fun onResume() {
@@ -103,6 +110,21 @@ class MainActivity : Activity() {
 
     private fun bubblesAllowed() =
         notifications.bubblePreference != NotificationManager.BUBBLE_PREFERENCE_NONE
+
+    private fun launcherIconVisible(): Boolean {
+        val state = packageManager.getComponentEnabledSetting(launcher)
+        return state == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT ||
+            state == PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+    }
+
+    private fun setLauncherIconVisible(visible: Boolean) {
+        packageManager.setComponentEnabledSetting(
+            launcher,
+            if (visible) PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+            else PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+            PackageManager.DONT_KILL_APP,
+        )
+    }
 
     private fun updateState() {
         val roleAvailable = roleManager.isRoleAvailable(RoleManager.ROLE_ASSISTANT)
