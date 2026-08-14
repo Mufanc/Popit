@@ -4,6 +4,8 @@ Popit! captures the foreground Android activity through the system Assistant API
 
 This is an experimental Android app for exploring `ROLE_ASSISTANT`, assist data, and notification bubbles. It uses Android Framework UI and APIs directly, with no AndroidX or third-party runtime libraries.
 
+No root access or privileged installation is required.
+
 ## Requirements
 
 - Android 15 or later (API 35+)
