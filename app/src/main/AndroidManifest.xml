@@ -21,23 +21,14 @@
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity-alias
-            android:name=".Launcher"
-            android:enabled="true"
-            android:exported="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:targetActivity=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity-alias>
 
         <activity
             android:name=".PopitAssistActivity"
@@ -49,17 +40,6 @@
         <receiver
             android:name=".BubbleDismissReceiver"
             android:exported="false" />
-
-        <receiver
-            android:name=".SecretCodeReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.telephony.action.SECRET_CODE" />
-                <data
-                    android:host="76748"
-                    android:scheme="android_secret_code" />
-            </intent-filter>
-        </receiver>
 
         <service
             android:name=".PopitTileService"

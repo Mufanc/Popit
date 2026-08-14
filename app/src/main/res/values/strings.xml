@@ -15,8 +15,6 @@
     <string name="quick_access">快捷入口</string>
     <string name="tile_title">快捷设置磁贴</string>
     <string name="tile_description">从快捷设置弹出当前应用</string>
-    <string name="hide_icon_title">隐藏应用图标</string>
-    <string name="hide_icon_description">隐藏后拨号 *#*#76748#*#*</string>
     <string name="status_enabled">已启用</string>
     <string name="status_disabled">未启用</string>
     <string name="status_unavailable">系统不支持</string>
